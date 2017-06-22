@@ -13,7 +13,7 @@ function tabbedMenu (container, appAPI, events, opts) {
   })
 
   // initialize tabbed menu
-  selectTab(container.querySelector('.envView'))
+  selectTab(container.querySelector('.compileView'))
 
   // add event listeners for loading spinner
   events.compiler.register('loadingCompiler', function start () {
