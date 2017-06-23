@@ -735,7 +735,6 @@ function run () {
   // ----------------- editor resize ---------------
 
   function onResize () {
-    editor.resize(document.querySelector('#editorWrap').checked)
     reAdjust()
   }
   window.onresize = onResize
@@ -1051,17 +1050,6 @@ function run () {
       compiler.loadVersion(false, url)
     }
   }
-
-  // set default
-  $('#optimize').attr('checked', (queryParams.get().optimize === 'true'))
-  compiler.setOptimize(document.querySelector('#optimize').checked)
-
-  document.querySelector('#optimize').addEventListener('change', function () {
-    var optimize = document.querySelector('#optimize').checked
-    queryParams.update({ optimize: optimize })
-    compiler.setOptimize(optimize)
-    runCompiler()
-  })
 
   // ----------------- version selector-------------
 
