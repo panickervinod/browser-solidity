@@ -726,7 +726,8 @@ function run () {
   var rhpEvents = {
     compiler: compiler.event,
     app: self.event,
-    udapp: udapp.event
+    udapp: udapp.event,
+    editor: editor.event
   }
   var righthandPanel = new RighthandPanel(rhpAPI, rhpEvents, {}) // eslint-disable-line
   self._view.rightpanel.appendChild(righthandPanel.render())
