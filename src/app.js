@@ -720,7 +720,10 @@ function run () {
       return executionContext.getProvider()
     },
     getContracts: () => {
-      return compiler.lastCompilationResult.data.contracts
+      if (compiler.lastCompilationResult && compiler.lastCompilationResult.data) {
+        return compiler.lastCompilationResult.data.contracts
+      }
+      return null
     },
     udapp: () => {
       return udapp
