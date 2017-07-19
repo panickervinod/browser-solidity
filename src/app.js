@@ -664,9 +664,6 @@ function run () {
     },
     fileProviderOf: (path) => {
       return fileProviderOf(path)
-    },
-    swarmVerifiedPublish: (content, expectedHash, cb) => {
-      return swarmVerifiedPublish (content, expectedHash, cb)
     }
   }
   var rhpEvents = {
