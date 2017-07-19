@@ -73,9 +73,7 @@ function RighthandPanel (appAPI, events, opts) {
     })
 
     // ----------------- tabbed menu -----------------
-    var tabbedMenuAPI = {
-      warnCompilerLoading: appAPI.warnCompilerLoading
-    }
+    var tabbedMenuAPI = {}
     // load tabbed menu component
     var tabEvents = {compiler: events.compiler, app: events.app}
     tabbedMenu(options, tabbedMenuAPI, tabEvents, {})

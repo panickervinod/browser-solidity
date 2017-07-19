@@ -638,12 +638,6 @@ function run () {
       onResize()
     },
     reAdjust: reAdjust,
-    warnCompilerLoading: (msg) => {
-      renderer.clear()
-      if (msg) {
-        renderer.error(msg, $('#output'), {type: 'warning'})
-      }
-    },
     executionContextChange: (context) => {
       return executionContext.executionContextChange(context)
     },
