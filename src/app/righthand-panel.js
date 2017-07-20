@@ -48,12 +48,14 @@ function RighthandPanel (appAPI, events, opts) {
   `
   var element = yo`
     <div id="righthand-panel">
-      <div id="menu">
-        ${options}
-        <img id="solIcon" title="Solidity realtime compiler and runtime" src="assets/img/remix_logo_512x512.svg" alt="Solidity realtime compiler and runtime">
-      </div>
+        <div id="menu">
+          ${options}
+          <img id="solIcon" title="Solidity realtime compiler and runtime" src="assets/img/remix_logo_512x512.svg" alt="Solidity realtime compiler and runtime">
+        </div>
+        ${optionViews}
     </div>
   `
+
   compileTab(optionViews, appAPI, events, opts)
   runTab(optionViews, appAPI, events, opts)
   settingsTab(optionViews, appAPI, events, opts)
