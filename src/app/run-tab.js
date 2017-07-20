@@ -184,7 +184,7 @@ function contractDropdown (appAPI, appEvents, instanceContainer) {
 
   var atAddressButtonInput = yo`<input class="${css.input} ataddressinput" placeholder="Enter contract's address - i.e. 0x60606..." title="atAddress" />`
   var createButtonInput = yo`<input class="${css.input}" placeholder="" title="create" />`
-  var selectContractNames = yo`<select class="${css.contractNames}"></select>`
+  var selectContractNames = yo`<select class="${css.contractNames}" disabled></select>`
   var el = yo`
     <div class="${css.container}">
       ${selectContractNames}
@@ -256,10 +256,12 @@ function contractDropdown (appAPI, appEvents, instanceContainer) {
     var contractNames = document.querySelector(`.${css.contractNames.classNames[0]}`)
     contractNames.innerHTML = ''
     if (success) {
+      selectContractNames.removeAttribute('disabled')
       for (var name in data.contracts) {
         contractNames.appendChild(yo`<option>${name}</option>`)
       }
     } else {
+      selectContractNames.setAttribute('disabled', true)
       contractNames.appendChild(yo`<option></option>`)
     }
     setInputParamsPlaceHolder()
