@@ -589,7 +589,6 @@ function run () {
     startdebugging(txResult.transactionHash)
   })
 
-
   // ---------------- Righthand-panel --------------------
   var rhpAPI = {
     config: config,
