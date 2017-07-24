@@ -580,16 +580,6 @@ function run () {
   var executionContext = new ExecutionContext()
 
   // ----------------- UniversalDApp -----------------
-  var udapp = new UniversalDApp(executionContext, {
-    removable: false,
-    removable_instances: true
-  })
-
-  udapp.event.register('debugRequested', this, function (txResult) {
-    startdebugging(txResult.transactionHash)
-  })
-
-  // ---------------- Righthand-panel --------------------
   var transactionContextAPI = {
     getAddress: (cb) => {
       cb(null, $('#txorigin').val())
@@ -607,6 +597,16 @@ function run () {
     }
   }
 
+  var udapp = new UniversalDApp(executionContext, {
+    removable: false,
+    removable_instances: true
+  })
+  udapp.reset({}, transactionContextAPI)
+  udapp.event.register('debugRequested', this, function (txResult) {
+    startdebugging(txResult.transactionHash)
+  })
+
+  // ---------------- Righthand-panel --------------------
   var rhpAPI = {
     config: config,
     setEditorSize (delta) {
