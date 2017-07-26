@@ -92,11 +92,17 @@ var css = csjs`
     min-width: 70px;
     margin-left: 2%;
   }
+  .log {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline
+  }
   .copyDetails {
-    margin-right: 5%;
+    margin-left: 2%;
+    font-size: 14px;
     cursor: pointer;
     color: ${styles.colors.grey};
-    opacity: .5;
+    opacity: .3;
   }
   .copyDetails:hover {
     opacity: 1;
@@ -286,7 +292,7 @@ function compileTab (container, appAPI, appEvents, opts) {
       var log = yo`<div class="${css.detailsJSON}"></div>`
       keys.map(x => {
         var copyDetails = yo`<span class="${css.copyDetails}"><i title="Copy details" class="fa fa-clipboard" onclick=${() => { copy(details[x]) }} aria-hidden="true"></i></span>`
-        log.appendChild(yo`<pre>${copyDetails} ${x}: ${JSON.stringify(details[x], null, 4)}</pre>`)
+        log.appendChild(yo`<div class=${css.log}><pre>${x}: ${JSON.stringify(details[x], null, 4)}</pre>${copyDetails}</div>`)
       })
       modalDialog(contractName, log, {label: 'OK'}, {label: ''})
     }
