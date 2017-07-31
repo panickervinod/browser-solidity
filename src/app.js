@@ -30,6 +30,7 @@ var EditorPanel = require('./app/editor-panel')
 var RighthandPanel = require('./app/righthand-panel')
 var examples = require('./app/example-contracts')
 var Txlistener = require('./app/txListener')
+var EventsDecoder = require('./app/listener/eventsDecoder')
 
 var css = csjs`
   html { box-sizing: border-box; }
@@ -849,18 +850,20 @@ function run () {
   node.insertBefore(staticanalysis.render(), node.childNodes[0])
 
   // ----------------- Tx listener -----------------
-  // Commented for now. will be used later.
+
+  var compiledContracts = function () {
+    if (compiler.lastCompilationResult && compiler.lastCompilationResult.data) {
+      return compiler.lastCompilationResult.data.contracts
+    }
+    return null
+  }
+
   var txlistener = new Txlistener({
     api: {
       web3: function () { return executionContext.web3() },
       isVM: function () { return executionContext.isVM() },
       vm: function () { return executionContext.vm() },
-      contracts: function () {
-        if (compiler.lastCompilationResult && compiler.lastCompilationResult.data) {
-          return compiler.lastCompilationResult.data.contracts
-        }
-        return null
-      },
+      contracts: compiledContracts,
       context: function () {
         return executionContext.getProvider()
       }
@@ -868,6 +871,14 @@ function run () {
     event: {
       executionContext: executionContext.event,
       udapp: udapp.event
+    }
+  })
+
+  var eventsDecoder = new EventsDecoder({ txListener: txlistener })
+
+  txlistener.event.register('txResolved', (tx, resolvedData) => {
+    if (resolvedData) {
+      eventsDecoder.parseLogs(tx, resolvedData, compiledContracts())
     }
   })
 
@@ -882,7 +893,8 @@ function run () {
     console.log({
       tx: tx,
       resolvedContract: txlistener.resolvedContract(address),
-      resolvedTransaction: resolvedTransaction
+      resolvedTransaction: resolvedTransaction,
+      resolvedEvents: eventsDecoder.eventsOf(tx.hash)
     })
   })
 
