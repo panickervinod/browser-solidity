@@ -29,8 +29,10 @@ var FilePanel = require('./app/file-panel')
 var EditorPanel = require('./app/editor-panel')
 var RighthandPanel = require('./app/righthand-panel')
 var examples = require('./app/example-contracts')
+/*
 var Txlistener = require('./app/txListener')
 var EventsDecoder = require('./app/eventsDecoder')
+*/
 
 var css = csjs`
   html { box-sizing: border-box; }
@@ -850,7 +852,8 @@ function run () {
   node.insertBefore(staticanalysis.render(), node.childNodes[0])
 
   // ----------------- Tx listener -----------------
-
+  // not used right now
+  /*
   var compiledContracts = function () {
     if (compiler.lastCompilationResult && compiler.lastCompilationResult.data) {
       return compiler.lastCompilationResult.data.contracts
@@ -901,6 +904,7 @@ function run () {
       })
     }
   })
+  */
 
   // ----------------- autoCompile -----------------
   var autoCompile = document.querySelector('#autoCompile').checked
