@@ -4,10 +4,11 @@ var EventManager = require('ethereum-remix').lib.EventManager
 
 var tabbedMenu = require('./tabbed-menu')
 var contractTab = require('./contract-tab')
+var filesTab = require('./files-tab')
 var settingsTab = require('./settings-tab')
 var analysisTab = require('./analysis-tab')
 var debuggerTab = require('./debugger-tab')
-var filesTab = require('./files-tab')
+var supportTab = require('./support-tab')
 
 var css = csjs`
   .options {
@@ -59,7 +60,7 @@ function RighthandPanel (appAPI, events, opts) {
       <li class="publishView" title="Publish" >Files</li>
       <li class="debugView" title="Debugger">Debugger</li>
       <li class="staticanalysisView" title="Static Analysis">Analysis</li>
-      <li id="helpButton"><a href="https://remix.readthedocs.org" target="_blank" title="Open Documentation">Docs</a></li>
+      <li class="supportView" title="Help and support">Support</li>
     </ul>
   `
   self._view.dragbar = yo`<div id="dragbar" class=${css.dragbar}></div>`
@@ -80,6 +81,7 @@ function RighthandPanel (appAPI, events, opts) {
   analysisTab(optionViews, appAPI, events, opts)
   debuggerTab(optionViews, appAPI, events, opts)
   filesTab(optionViews, appAPI, events, opts)
+  supportTab(optionViews, appAPI, events, opts)
 
   self.render = function () { return self._view.element }
 

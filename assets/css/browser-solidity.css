@@ -117,6 +117,10 @@
     display: block;
 }
 
+#header #optionViews.supportView #supportView {
+    display: block;
+}
+
 #header #optionViews.txView input,
 #header #optionViews.txView select {
     max-width: 13em;
@@ -395,7 +399,7 @@ input[type="file"] {
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top: -300px; opacity: 0} 
+    from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
 }
 
